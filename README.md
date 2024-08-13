@@ -1,10 +1,8 @@
-# [GitHub Desktop](https://desktop.github.com) - The Linux Fork
+### [GitHub Desktop](https://desktop.github.com) - Linux分支
 
-[![CI](https://github.com/shiftkey/desktop/actions/workflows/ci.yml/badge.svg)](https://github.com/shiftkey/desktop/actions/workflows/ci.yml)
+[[CI](https://github.com/shiftkey/desktop/actions/workflows/ci.yml/badge.svg)](https://github.com/shiftkey/desktop/actions/workflows/ci.yml)
 
-[GitHub Desktop](https://desktop.github.com/) is an open-source [Electron](https://www.electronjs.org/)-based
-GitHub app. It is written in [TypeScript](https://www.typescriptlang.org) and
-uses [React](https://reactjs.org/).
+[GitHub Desktop](https://desktop.github.com/) 是一款基于 [Electron](https://www.electronjs.org/) 的开源 GitHub 应用程序。它使用 [TypeScript](https://www.typescriptlang.org) 编写，并且采用了 [React](https://reactjs.org/)。
 
 <picture>
   <source
@@ -14,160 +12,139 @@ uses [React](https://reactjs.org/).
   <img
     width="1072"
     src="https://user-images.githubusercontent.com/634063/202742985-bb3b3b94-8aca-404a-8d8a-fd6a6f030672.png"
-    alt="A screenshot of the GitHub Desktop application showing changes being viewed and committed with two attributed co-authors"
+    alt="GitHub Desktop 应用程序的截图，展示正在查看和提交更改的过程，其中有两个共同作者被归功"
   />
 </picture>
 
-## What is this repository for?
+#### 这个仓库是做什么的？
 
-This repository contains specific patches on top of the upstream
-`desktop/desktop` repository to support Linux usage.
+这个仓库包含了一些针对上游 `desktop/desktop` 仓库的特定补丁，用于支持 Linux 系统的使用。
 
-It also publishes [releases](https://github.com/shiftkey/desktop/releases) for various Linux distributions:
+此外，它还发布了适用于不同 Linux 发行版的版本：
 
- - AppImage (`.AppImage`)
- - Debian (`.deb`)
- - RPM (`.rpm`)
+- AppImage (`.AppImage`)
+- Debian (`.deb`)
+- RPM (`.rpm`)
 
-## Installation via package manager
+#### 通过包管理器安装
 
-You can use your operating system's package manager to install `github-desktop` and
-keep it up to date on Debian and RPM-based distributions.
+您可以使用操作系统自带的包管理器来安装 `github-desktop` 并保持其更新至最新版本，在 Debian 和基于 RPM 的发行版上。
 
-### Debian/Ubuntu
+##### Debian/Ubuntu
 
-There are two APT package feeds available, both hosted in the US. You only need
-to add one or the other here, as both of these are generated based on the
-releases from this repository.
+有两个可用的 APT 包源，均托管在美国。您只需添加其中一个即可，因为它们都是基于此仓库发布的版本生成的。
 
-#### [@shiftkey](https://github.com/shiftkey) package feed
+###### @shiftkey 包源
 
 ```sh
 wget -qO - https://apt.packages.shiftkey.dev/gpg.key | gpg --dearmor | sudo tee /usr/share/keyrings/shiftkey-packages.gpg > /dev/null
 sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/shiftkey-packages.gpg] https://apt.packages.shiftkey.dev/ubuntu/ any main" > /etc/apt/sources.list.d/shiftkey-packages.list'
 ```
 
-#### [@mwt](https://github.com/mwt) package feed
+###### @mwt 包源
 
 ```sh
 wget -qO - https://mirror.mwt.me/shiftkey-desktop/gpgkey | gpg --dearmor | sudo tee /usr/share/keyrings/mwt-desktop.gpg > /dev/null
 sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/mwt-desktop.gpg] https://mirror.mwt.me/shiftkey-desktop/deb/ any main" > /etc/apt/sources.list.d/mwt-desktop.list'
 ```
 
-#### Installation
+##### 安装
 
-Once you have a feed configured, run this command to install the application:
+配置好包源后，运行以下命令来安装应用程序：
 
 ```sh
 sudo apt update && sudo apt install github-desktop
 ```
 
-### Red Hat/CentOS/Fedora
+##### Red Hat/CentOS/Fedora
 
-There are two RPM package feeds available, both hosted in the US. You only need
-to add one or the other here, as both of these are generated based on the
-releases from this repository.
+有两个可用的 RPM 包源，均托管在美国。您只需添加其中一个即可，因为它们都是基于此仓库发布的版本生成的。
 
-#### [@shiftkey](https://github.com/shiftkey) package feed
+###### @shiftkey 包源
 
 ```sh
 sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
 sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
 ```
 
-#### [@mwt](https://github.com/mwt) package feed
+###### @mwt 包源
 
 ```sh
 sudo rpm --import https://mirror.mwt.me/shiftkey-desktop/gpgkey
 sudo sh -c 'echo -e "[mwt-packages]\nname=GitHub Desktop\nbaseurl=https://mirror.mwt.me/shiftkey-desktop/rpm\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://mirror.mwt.me/shiftkey-desktop/gpgkey" > /etc/yum.repos.d/mwt-packages.repo'
 ```
 
-#### Installation
+##### 安装
 
-Once you have a feed configured, run this command to install the application:
+配置好包源后，运行以下命令来安装应用程序：
 
 ```sh
-# if yum is your package manager
+# 如果您的包管理器是 yum
 sudo yum install github-desktop
 
-# if dnf is your package manager
+# 如果您的包管理器是 dnf
 sudo dnf install github-desktop
 
-# if zypper is your package manager
+# 如果您的包管理器是 zypper
 sudo zypper ref && sudo zypper in github-desktop
 ```
 
-#### OpenSUSE
+##### OpenSUSE
 
-There are two RPM package feeds available, both hosted in the US. You only need
-to add one or the other here, as both of these are generated based on the
-releases from this repository.
+有两个可用的 RPM 包源，均托管在美国。您只需添加其中一个即可，因为它们都是基于此仓库发布的版本生成的。
 
-#### [@shiftkey](https://github.com/shiftkey) package feed
+###### @shiftkey 包源
 
 ```sh
 sudo rpm --import https://rpm.packages.shiftkey.dev/gpg.key
 sudo sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/zypp/repos.d/shiftkey-packages.repo'
 ```
 
-#### [@mwt](https://github.com/mwt) package feed
+###### @mwt 包源
 
 ```sh
 sudo rpm --import https://mirror.mwt.me/shiftkey-desktop/gpgkey
 sudo sh -c 'echo -e "[mwt-packages]\nname=GitHub Desktop\nbaseurl=https://mirror.mwt.me/shiftkey-desktop/rpm\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://mirror.mwt.me/shiftkey-desktop/gpgkey" > /etc/zypp/repos.d/mwt-packages.repo'
 ```
 
-#### Installation
+##### 安装
 
 ```sh
 sudo zypper ref && sudo zypper in github-desktop
 ```
 
+#### 其他发行版
 
-## Other Distributions
+##### Arch Linux
 
-### Arch Linux
+Arch Linux 用户可以从 [AUR](https://aur.archlinux.org/packages/github-desktop-bin/) 安装 GitHub Desktop。
 
-Arch Linux users can install GitHub Desktop from the [AUR](https://aur.archlinux.org/packages/github-desktop-bin/).
+`gnome-keyring` 是必需的，并且守护进程必须在登录时或启动 X 服务器时启动。通常这由显示管理器处理，但在其他情况下，遵循 [Arch Wiki](https://wiki.archlinux.org/index.php/GNOME/Keyring#Using_the_keyring_outside_GNOME) 上的说明可以解决无法保存登录凭据的问题。
 
-`gnome-keyring` is required and the daemon must be launched either at login or when the X server is started. Normally this is handled by a display manager, but in other cases following the instructions found on the [Arch Wiki](https://wiki.archlinux.org/index.php/GNOME/Keyring#Using_the_keyring_outside_GNOME) will fix the issue of not being able to save login credentials.
+##### 跨平台包
 
-### Cross-Distribution Packages
+GitHub Desktop 同样作为 [Flatpak](https://github.com/flathub/io.github.shiftey.Desktop) 和 [AppImage](https://appimage.github.io/GitHubDesktop/) 提供跨平台支持。
 
-GitHub Desktop is also available cross-platform as a [Flatpak](https://github.com/flathub/io.github.shiftey.Desktop) and [AppImage](https://appimage.github.io/GitHubDesktop/).
+##### deb-get
 
-### deb-get
+Debian/Ubuntu 用户也可以直接从这个仓库使用 `deb-get` 来安装：`deb-get install github-desktop`。
 
-Debian/Ubuntu users can also install directly from this repository using [`deb-get`](https://github.com/wimpysworld/deb-get): `deb-get install github-desktop`.
+#### 已知问题
 
-## Known issues
+如果您在使用 Desktop 时遇到问题，请参阅 [已知问题](docs/known-issues.md#linux) 文档以获取指导和常见限制的解决方案。
 
-If you're having troubles with Desktop, please refer to the [Known issues](docs/known-issues.md#linux)
-document for guidance and workarounds for common limitations.
+如果您的包管理器仍在尝试连接到 PackageCloud，请参阅 [清理说明](docs/known-issues.md#the-packagecloud-package-feed-is-no-longer-working)，了解有关迁移的详细信息。
 
-If your package manager is still trying to reach PackageCloud, refer to the
-[cleanup instructions](docs/known-issues.md#the-packagecloud-package-feed-is-no-longer-working)
-for details about migrating away.
+#### 更多信息
 
-## More information
+请查阅上游 [GitHub Desktop 项目](https://github.com/desktop/desktop#github-desktop) 的 [README](https://github.com/desktop/desktop#github-desktop) 和 [desktop.github.com](https://desktop.github.com/) 了解更多关于 GitHub Desktop 的产品信息。
 
-Please check out the [README](https://github.com/desktop/desktop#github-desktop)
-on the upstream [GitHub Desktop project](https://github.com/desktop/desktop) and
-[desktop.github.com](https://desktop.github.com) for more product-oriented
-information about GitHub Desktop.
+参见我们的 [入门文档](https://docs.github.com/en/desktop/overview/getting-started-with-github-desktop) 以了解如何设置、验证和配置 GitHub Desktop。
 
-See our [getting started documentation](https://docs.github.com/en/desktop/overview/getting-started-with-github-desktop) for more information on how to set up, authenticate, and configure GitHub Desktop.
-
-## License
+#### 许可
 
 **[MIT](LICENSE)**
 
-The MIT license grant is not for GitHub's trademarks, which include the logo
-designs. GitHub reserves all trademark and copyright rights in and to all
-GitHub trademarks. GitHub's logos include, for instance, the stylized
-Invertocat designs that include "logo" in the file title in the following
-folder: [logos](app/static/logos).
+MIT 许可协议并不涵盖 GitHub 的商标，包括徽标设计。GitHub 保留对其所有商标和版权的权利。GitHub 的徽标包括但不限于位于以下文件夹中的带有 "logo" 文件名标题的 Invertocat 设计：[logos](app/static/logos)。
 
-GitHub® and its stylized versions and the Invertocat mark are GitHub's
-Trademarks or registered Trademarks. When using GitHub's logos, be sure to
-follow the GitHub [logo guidelines](https://github.com/logos).
+GitHub® 及其各种变体以及 Invertocat 商标均为 GitHub 的商标或注册商标。在使用 GitHub 的徽标时，请确保遵守 GitHub 的 [徽标指南](https://github.com/logos)。
